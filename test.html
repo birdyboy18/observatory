@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Lunr Search Test</title>
+  </head>
+  <body>
+    <script src="lib/lunr.js/lunr.min.js"></script>
+    <script src="lib/mustache/mustache.min.js"></script>
+    <script src="search.js"></script>
+    <script>
+      var search = new lunr_search({
+        url: 'data.json',
+        searchParams: {
+            ref: 'url',
+            fields: [
+                { 'name': 'title', 'boost': 50 },
+                { 'name': 'content', 'boost': 0 },
+                { 'name': 'categories.name', 'boost': 80 },
+                { 'name': 'tags.name', 'boost': 100 }
+            ]
+        }
+      });
+      search.getFeed();
+    </script>
+  </body>
+</html>
